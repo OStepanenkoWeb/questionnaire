@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classes from './Auth.module.scss'
 import Button from '../../components/Ui/Button/Button'
 import Input from '../../components/Ui/Input/Input'
+import {FIREBASE_URL} from '../../../configApi.js'
 import axios from 'axios'
 
 export default class Auth extends Component {
@@ -44,7 +45,7 @@ export default class Auth extends Component {
             returnSecureToken: true
         };
         try{
-            await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD17TMV4jZYfvbtwbORBJ1bfErcSdKVeDY', authData)
+            await axios.post(FIREBASE_URL, authData)
         } catch (e) {
             console.log(e)
         }
@@ -57,7 +58,7 @@ export default class Auth extends Component {
             returnSecureToken: true
         };
         try{
-            await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD17TMV4jZYfvbtwbORBJ1bfErcSdKVeDY', authData)
+            await axios.post(FIREBASE_URL, authData)
         } catch (e) {
             console.log(e)
         }

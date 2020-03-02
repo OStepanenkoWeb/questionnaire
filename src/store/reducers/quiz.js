@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export default function quizReducer(state = initialState, action) {
-    console.log(222)
+
     switch (action.type) {
         case FETCH_QUIZES_START:
             return {
