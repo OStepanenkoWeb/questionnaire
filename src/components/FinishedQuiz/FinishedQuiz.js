@@ -4,10 +4,10 @@ import Button from '../Ui/Button/Button'
 import CONSTANTS from '../../constants'
 import {Link} from 'react-router-dom'
 
-const FinishedQuiz = props => {
-    const successCount = Object.keys(props.results).reduce((total, key) => {
+const FinishedQuiz = ({results, quiz, onRetry}) => {
+    const successCount = Object.keys(results).reduce((total, key) => {
 
-        return (props.results[key] === CONSTANTS.SUCCESS) ? total + 1 : total
+        return (results[key] === CONSTANTS.SUCCESS) ? total + 1 : total
     }, 0)
 
     return (
@@ -16,8 +16,8 @@ const FinishedQuiz = props => {
                 {props.quiz.map((quizItem, index) => {
                     const cls = [
                         'fa',
-                        props.results[quizItem.id] === CONSTANTS.ERROR ? 'fa-times' : 'fa-check',
-                        classes[props.results[quizItem.id]]
+                        results[quizItem.id] === CONSTANTS.ERROR ? 'fa-times' : 'fa-check',
+                        classes[results[quizItem.id]]
                     ]
                     return (
                         <li key={index}>
@@ -28,11 +28,11 @@ const FinishedQuiz = props => {
                     )
                 })}
             </ul>
-            <p>Правильно {successCount} из {props.quiz.length}</p>
+            <p>Правильно {successCount} из {quiz.length}</p>
 
             <div>
                 <Button
-                    onClick={props.onRetry}
+                    onClick={onRetry}
                     disabled={false}
                     type={CONSTANTS.PRIMARY}
                 >
@@ -40,7 +40,7 @@ const FinishedQuiz = props => {
                 </Button>
                 <Link to={'/'}>
                     <Button
-                        onClick={props.onRetry}
+                        onClick={onRetry}
                         disabled={false}
                         type={CONSTANTS.SUCCESS}
                     >

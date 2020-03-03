@@ -47,7 +47,7 @@ export default class Auth extends Component {
         try{
             await axios.post(FIREBASE_URL, authData)
         } catch (e) {
-            console.log(e)
+            console.log(`Ошибка  аутентификаци firebase: ${e}`)
         }
     };
 
@@ -60,13 +60,11 @@ export default class Auth extends Component {
         try{
             await axios.post(FIREBASE_URL, authData)
         } catch (e) {
-            console.log(e)
+            console.log(`Ошибка  аутентификаци firebase: ${e}`)
         }
     };
 
-    submitHandler= (event) => {
-        event.preventDefault()
-    };
+    submitHandler= event => event.preventDefault();
 
     onChangeHandler = (event, controlName) => {
         const formControls = { ...this.state.formControls };
@@ -75,7 +73,6 @@ export default class Auth extends Component {
         control.value = event.target.value;
         control.touched = true;
         control.valid = this.validateControl(control.value, control.validation);
-        console.log(this.state)
 
         formControls[controlName] = control;
 
@@ -91,7 +88,7 @@ export default class Auth extends Component {
     };
 
     validateEmail = (email) => {
-        const re = /^(([^<>().,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^(([^<>().,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //mail123@.mail123.com
 
         return re.test(String(email).toLowerCase());
     };

@@ -2,21 +2,21 @@ import React from 'react'
 import classes from './ActiveQuiz.module.scss'
 import AnswerList from './AnswersList/AnswerList'
 
-const ActiveQuiz = props => (
+const ActiveQuiz = ({answerNumber, question, quzLenght, answerState, answers, onAnswerClickHandler}) => (
     <div className={classes.ActiveQuiz}>
         <p className={classes.Question}>
             <span>
-                <strong>{props.answerNumber}</strong>&nbsp;
-                {props.question}
+                <strong>{answerNumber}</strong>&nbsp;
+                {question}
             </span>
             <small>
-                {props.answerNumber} из {props.quzLenght}
+                {answerNumber} из {quzLenght}
             </small>
         </p>
         <AnswerList
-            answerState={props.answerState}
-            answers={props.answers}
-            onAnswerClickHandler={props.onAnswerClickHandler}
+            answerState={answerState}
+            answers={answers}
+            onAnswerClickHandler={onAnswerClickHandler}
         />
     </div>
 )

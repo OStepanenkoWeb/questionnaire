@@ -1,10 +1,10 @@
 import React from 'react'
 import classes from './BackDrop.module.scss'
 
-const BackDrop = props => (
+const BackDrop = ({onClick}) => (
         <div 
             className={classes.BackDrop} 
-            onClick={props.onClick}
+            onClick={onClick}
         />
     )
 
