@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import classes from './Auth.module.scss'
 import Button from '../../components/Ui/Button/Button'
 import Input from '../../components/Ui/Input/Input'
-import {FIREBASE_URL} from '../../../configApi.js'
+import {FIREBASE_URL} from '../../configApi'
 import axios from 'axios'
 
 export default class Auth extends Component {

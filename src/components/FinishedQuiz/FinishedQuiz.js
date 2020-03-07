@@ -13,7 +13,7 @@ const FinishedQuiz = ({results, quiz, onRetry}) => {
     return (
         <div className={classes.FinishedQuiz}>
             <ul>
-                {props.quiz.map((quizItem, index) => {
+                {quiz.map((quizItem, index) => {
                     const cls = [
                         'fa',
                         results[quizItem.id] === CONSTANTS.ERROR ? 'fa-times' : 'fa-check',
