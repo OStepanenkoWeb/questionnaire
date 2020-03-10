@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import classes from './Auth.module.scss'
 import Button from '../../components/Ui/Button/Button'
 import Input from '../../components/Ui/Input/Input'
-import {FIREBASE_URL} from '../../configApi'
-import axios from 'axios'
+import {connect} from 'react-redux'
+import {auth} from "../../store/actions/auth"
 
-export default class Auth extends Component {
+class Auth extends Component {
 
     state = {
         isFormValid: false,
@@ -38,30 +38,20 @@ export default class Auth extends Component {
         }
     }
 
-    loginHandler = async () => {
-        const authData = {
-            email: this.state.formControls.email.valid,
-            password: this.state.formControls.password.valid,
-            returnSecureToken: true
-        };
-        try{
-            await axios.post(FIREBASE_URL, authData)
-        } catch (e) {
-            console.log(`Ошибка  аутентификаци firebase: ${e}`)
-        }
-    };
+    loginHandler = () => {
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            true
+        )
+    }
 
-    registerHandler= async () => {
-        const authData = {
-            email: this.state.formControls.email.value,
-            password: this.state.formControls.password.value,
-            returnSecureToken: true
-        };
-        try{
-            await axios.post(FIREBASE_URL, authData)
-        } catch (e) {
-            console.log(`Ошибка  аутентификаци firebase: ${e}`)
-        }
+    registerHandler= () => {
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            false
+        )
     };
 
     submitHandler= event => event.preventDefault();
@@ -105,7 +95,6 @@ export default class Auth extends Component {
         }
 
         if (validation.email) {
-            console.log(123)
             isValid = this.validateEmail(value) && isValid
         }
 
@@ -152,3 +141,12 @@ export default class Auth extends Component {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+    }
+
+}
+
+export default connect(null, mapDispatchToProps)(Auth)

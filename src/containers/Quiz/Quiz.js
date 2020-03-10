@@ -20,7 +20,6 @@ class Quiz extends Component{
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className={classes.Quiz}>
                 <div className={classes.QuizWrapper}>

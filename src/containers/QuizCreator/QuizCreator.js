@@ -5,7 +5,6 @@ import {createControl, validate, validateForm} from '../../formFabric/formFabric
 import Input from '../../components/Ui/Input/Input'
 import Auxilliary from '../../hoc/Auxilliary/Auxilliary'
 import Select from '../../components/Ui/Select/Select'
-import axios from '../../axios/api'
 import {connect} from 'react-redux'
 import {createQuizQuestion, finishCreateQuiz} from "../../store/actions/create"
 
@@ -82,8 +81,6 @@ class QuizCreator extends Component {
     createQuizHandler = event => {
         event.preventDefault()
 
-
-
         this.setState({
             rightAnswerId: 1,
             isFormValid: false,
@@ -98,7 +95,6 @@ class QuizCreator extends Component {
         const formControls = { ...this.state.formControls };
         const control = {...formControls[controlName]};
 
-        console.log(control.validation)
         control.value = event.target.value;
         control.touched = true;
         control.valid = validate(control.value, control.validation)
