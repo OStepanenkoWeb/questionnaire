@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classes from './QuizCreator.module.scss'
 import Button from '../../components/Ui/Button/Button'
-import {createControl, validate, validateForm} from '../../formFabric/formFabric'
+import {createControl, validate, validateForm} from '../../formFactory/formFactory'
 import Input from '../../components/Ui/Input/Input'
 import Auxilliary from '../../hoc/Auxilliary/Auxilliary'
 import Select from '../../components/Ui/Select/Select'
